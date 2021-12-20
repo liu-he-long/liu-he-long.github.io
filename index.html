@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English Learning……</title>
+     <style type="text/css">
+
+@font-face {
+    font-family: 'ciclefina';
+    src: url('images/cicle-webfont.woff2') format('woff2'),
+	     url('images/cicle-webfont.woff') format('woff'),
+         url('images/ciclefina-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'zantroke';
+    src: url('images/zantroke-webfont.woff2') format('woff2'),
+	     url('images/zantroke-webfont.woff') format('woff'),
+         url('images/zantroke-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+} 
+
+    body{
+	margin:0 auto;
+ /*	font-size:页面打开时，由用户端的window.innerWidth属性决定*/
+		}
+	header{
+	font-family: 'zantroke';
+	height:150px;
+	background:url("images/header.jpg") no-repeat center ;
+	color:white;
+    text-align:center;
+	text-shadow:green 3px 2px ;
+	}
+	header>h1{
+	 margin:0 auto;
+	 padding:10px;
+	 font-size:1.8em;
+	 letter-spacing:0.2em;
+	}
+	header>h1>span{
+	font-size:0.5em;
+	}
+
+	nav{
+	height:50px;
+	margin:30px;
+	}
+    nav span{
+	 font-size: 1.3em;
+	 border:3px outset   ;
+	 background-color:rgb(0,50,0);
+	 border-radius: 15% ;
+	 padding: 0.2em ;
+	 color:rgb(255,255,255) ;
+	 cursor: pointer;
+	 }
+     nav span:hover{
+	  background-color:rgb(0,0,200);
+	 }
+	  .onclickStyle{
+	   border:3px  inset  ;
+	   background-color:rgb(0,0,100);
+	   color:rgb(255,255,255) ;
+	 }
+
+	section{
+	 display: flex ;
+	}
+	article{
+	 font-family: 'ciclefina' , '黑体';
+	 border:1px solid rgb(50,150,50);
+	 padding:5px;
+	 text-align:justify;
+	 line-height:1.5;
+     color:rgb(0,100,0) ;
+	 background-color:rgb(200,220,200);
+	}
+	article#help{
+	 flex: 1 ;
+	}
+	article#word{
+	 flex: 2;
+	 text-align:center;
+	}
+    article#word input#en{font-family: 'zantroke'}
+
+	footer{
+	font-family: 'zantroke','Arial Black';
+	background-color:rgb(0,50,0);
+	color:white;
+	font-size:1.2em;
+	text-align:center;
+	height:50px;
+	padding-top:15px;
+	}
+
+    article#word{
+	 text-align:center;
+	 cursor:pointer;
+	}
+	
+	article#word>input{
+	 width:90%; 
+	 font-family:'zant';
+	 color:rgb(200,0,0);
+     font-size:2.2em;
+	 text-align:center;
+	}
+	article#word p#pn{
+	 font-family:'Arial','ciclefina';
+	 color:rgb(0,150,0);
+	 font-size:2.5em;
+	 margin:0.5em auto;
+	}
+	article#word p#cn{
+	 font-family:'ciclefina', '黑体';
+	 font-size:1.5em;
+	 color:rgb(150,0,0);
+	 margin:0.5em auto;
+	}
+    article#help{
+	  position:relative;
+	  background-color:rgb(20,50,0);
+	  overflow:hidden;
+	   	} 
+	article#help div#backPic{
+	 position:absolute;
+	 width:98%;
+	 height:98%;
+	 left:1%;top:1%;
+	 z-index: 1 ;
+	}
+	article#help div#backPic img{
+	 width:100%;
+	 /*height:100%;如果设置这条，会照成窄屏幕出现图像变形*/
+	}
+	 article#help p#textInfo{
+	  position:absolute;
+	  color:white;
+	  font-size:1.3em;
+	  text-indent:2em;
+	  left:0.2em;
+	  top:35%;
+	  text-shadow:red 2px 1px ;
+	  z-index: 2 ;
+	  padding:1%;
+	  
+	 	  }
+  </style>
+  <script src="images/words.js">
+  </script>
+  <script src="20190001.js">
+  </script>
+  <script src="js/jquery-3.5.1.js"></script>
+ </head>
+ <body>
+  <header> 
+   <h1>Words Learning App <span>（大学英语6级）</span></h1>
+   <nav>
+    <span   id="read">读一读</span>
+    <span   id="write">写一写</span>
+    <span   id="select">选一选</span>
+    <span   id="search">搜一搜</span>
+    <span   id="listen">听一听</span>
+   </nav>
+  </header>
+  <section style="height: 540px;">
+    <article id = "help">
+	  <p id="textInfo">
+     Photo from the movie of "Pride And Prejudice ",
+	 请选择上面状态按钮，进入相应学习单词的模式。
+	 </p>
+	 <div id="backPic" >
+	 </div>
+	</article>
+	<article id = "word">
+	  <h1 id="an">当前单词</h1>
+	  <input id="en" type="text" value="ability">
+	  <p id="pn">/ ə'biliti /</p>
+	  <p id="cn">n.能力；本领；才能，才干；专门技能，天资</p>
+
+    </article>
+  </section>
+  <footer>
+    Code By 你的姓名 of 班级  on
+  </footer>
+ <script type="text/javascript">
+     window.onload=function () {
+            //随机图片的生成
+            var myImages = [] ;//图像对象 组成的 数组
+            for (var i=1; i<8; i++ ){
+                var img = new Image();
+                img.src = "images/" + i + ".jpg" ;
+                //img.style.opacity = "0.5" ;
+                myImages.push(img) ;
+            }
+            var randInt =  Math.floor(Math.random()*7) ;
+            $("#backPic").append(myImages[randInt]);
+
+            //初始化
+             function init() {
+                 var an = document.getElementById("an");
+                 an.innerText = "当前单词"
+                 var en = document.getElementById("en");
+                 en.value = "";
+                 var pn = document.getElementById("pn");
+                 pn.innerText = "";
+                 var cn = document.getElementById("cn");
+                 cn.innerText = "";
+             }
+
+             //判断字符串是否含有这个value值
+             function findWord(word) {
+                 return word.startsWith(en.value);
+             }
+
+             //随机生成多个数组
+             function getRandomArrayElements(arr, count) {
+                 var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+                 while (i-- > min) {
+                     index = Math.floor((i + 1) * Math.random());
+                     temp = shuffled[index];
+                     shuffled[index] = shuffled[i];
+                     shuffled[i] = temp;
+                 }
+                 return shuffled.slice(min);
+             }
+
+            //这里实现 搜一搜
+            document.getElementById("search").onclick=function () {
+                 init();
+                en.addEventListener("keyup", function(event) {
+                    event.preventDefault();
+                    if (event.keyCode === 13) {
+                        var wordAll = en6.find(findWord);
+                        console.log(wordAll);
+                        //console.log(wordAll.indexOf("/"));
+                        //console.log(wordAll.lastIndexOf("/"));
+                        pn.innerText = wordAll.slice(wordAll.indexOf("/"),wordAll.lastIndexOf("/")+1);
+                        cn.innerText = wordAll.slice(wordAll.lastIndexOf("/")+1);
+                    }
+                });
+            }
+
+            //这里实现 选一选
+            document.getElementById("select").onclick=function () {
+                init();
+                var items = getRandomArrayElements(en6,4);
+                items.forEach((item, index, items) => {
+                    //console.log(item);
+                    //console.log(item.slice(item.lastIndexOf("/")+1));
+                    $("<input type='radio' name='select1'>" + item.slice(item.lastIndexOf("/")+1) + "</input>").attr("value",item.slice(item.lastIndexOf("/")+1)).appendTo("#cn");
+                    $("#cn").append("<br>");
+                    //cn.innerText += item.slice(item.lastIndexOf("/")+1) + "\n";
+                });
+                var word = items[Math.floor((Math.random()*items.length))];
+                en.value = word.slice(0,word.indexOf("/"));
+                $("#cn").append("<button type=''submit' id='submit'>提交按钮</button>");
+                $("#submit").click(function () {
+                    var select1 = document.getElementsByName("select1");
+                    for(var i in select1){
+                        if(select1[i].checked){
+                            //console.log(select1[i].value);
+                            if(select1[i].value == word.slice(word.lastIndexOf("/")+1)){
+                                pn.innerText = "恭喜你，选对啦！！！";
+                                $("#pn").attr("style","color : red");
+                            }else{
+                                pn.innerText = "选错了喔，请再次选择";
+                            }
+                        }
+                    }
+                })
+            }
+
+            //这里实现写一写
+             document.getElementById("write").onclick=function (){
+                 init();
+                 an.innerText = "中文/英文";
+                 /*en.addEventListener("keyup", function(event) {
+                     event.preventDefault();
+                     if (event.keyCode === 13) {
+                         if(en.value == "英文"){
+                             var item = en6[Math.floor((Math.random()*en6.length))];
+                             $("<input type='text'>" + item.slice(item.lastIndexOf("/")+1) + "</input>").attr("id","index").appendTo("#cn");
+                             $("#cn").append("<br>");
+                             var array = item.slice(0,item.indexOf("/"));
+                             console.log(array);
+                             var text = document.getElementById("index");
+                             text.addEventListener("keyup", function(event) {
+                                 event.preventDefault();
+                                 if (event.keyCode === 13) {
+                                     if (text.value == array) {
+                                         pn.innerText = "回答正确！";
+                                         $("#index").css("color","red");
+                                     }else{
+                                         pn.innerText = "回答错误";
+                                         $("#index").css("color","blue");
+                                     }
+                                 }
+                             })
+                         }else if(en.value == "中文"){
+                             var item = en6[Math.floor((Math.random()*en6.length))];
+                             $("<input type='text'>" + item.slice(0,item.indexOf("/")) + "</input>").attr("id","index1").appendTo("#cn");
+                             $("#cn").append("<br>");
+                             var array1 = item.slice(item.lastIndexOf("/")+1);
+                             console.log(array1);
+                             var text = document.getElementById("index1");
+                             text.addEventListener("keyup", function(event) {
+                                 event.preventDefault();
+                                 if(event.keyCode === 13){
+                                     if (array1.includes(text.value)) {
+                                         pn.innerText = "回答正确！";
+                                         $("#index1").css("color","red");
+                                     }else{
+                                         pn.innerText = "回答错误";
+                                         $("#index1").css("color","blue");
+                                     }
+                                 }
+                             })
+                         }
+                     }
+                 });*/
+                 $("<button id='one'>中文</button>").appendTo("#pn");
+                 $("<button id='two'>英文</button>").appendTo("#pn");
+                 document.getElementById("one").onclick=function (){
+                     var cn = document.getElementById("cn");
+                     cn.innerText = "";
+                     var item = en6[Math.floor((Math.random()*en6.length))];
+                     $("<input type='text'>" + item.slice(0,item.indexOf("/")) + "</input>").attr("id","index1").appendTo("#cn");
+                     $("#cn").append("<br>");
+                     var array1 = item.slice(item.lastIndexOf("/")+1);
+                     console.log(array1);
+                     var text = document.getElementById("index1");
+                     text.addEventListener("keyup", function(event) {
+                         event.preventDefault();
+                         if(event.keyCode === 13){
+                             if (array1.includes(text.value)) {
+                                 en.value = "回答正确！";
+                                 $("#index1").css("color","red");
+                             }else{
+                                 en.value = "回答错误";
+                                 $("#index1").css("color","blue");
+                             }
+                         }
+                     })
+                 }
+                 document.getElementById("two").onclick=function (){
+                     var cn = document.getElementById("cn");
+                     cn.innerText = "";
+                     var item = en6[Math.floor((Math.random()*en6.length))];
+                     $("<input type='text'>" + item.slice(item.lastIndexOf("/")+1) + "</input>").attr("id","index").appendTo("#cn");
+                     $("#cn").append("<br>");
+                     var array = item.slice(0,item.indexOf("/"));
+                     console.log(array);
+                     var text = document.getElementById("index");
+                     text.addEventListener("keyup", function(event) {
+                         event.preventDefault();
+                         if (event.keyCode === 13) {
+                             if (text.value == array) {
+                                 en.value = "回答正确！";
+                                 $("#index").css("color","red");
+                             }else{
+                                 en.value = "回答错误";
+                                 $("#index").css("color","blue");
+                             }
+                         }
+                     })
+                 }
+             }
+
+             //这里实现读一读
+            document.getElementById("read").onclick=function (){
+                init();
+                en.addEventListener("keyup", function(event) {
+                    event.preventDefault();
+                    if (event.keyCode === 13) {
+                        $("#cn").empty();
+                        $("<audio controls='controls' autoplay>").attr("src",'http://dict.youdao.com/dictvoice?audio='+en.value).appendTo("#cn");
+                    }
+                });
+            }
+
+            //这里实现听一听
+            document.getElementById("listen").onclick=function (){
+                init();
+                var item = en6[Math.floor((Math.random()*en6.length))];
+                en.value = item.slice(0,item.indexOf("/"));
+                $("#cn").empty();
+                $("<audio controls='controls' autoplay>").attr("src",'http://dict.youdao.com/dictvoice?audio='+en.value).appendTo("#cn");
+            }
+     }
+ </script>
+
+ </body>
+</html>
